@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout/layout-default}">
+
+<div layout:fragment="content">
+	<div class="card mb-4">
+        <div class="card-header bg-white font-weight-bold">
+            Status dos usuários
+        </div>
+       	<div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Ativo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Inativo</td>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Pendente</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+	</div>
+</div>
+
+</html>
