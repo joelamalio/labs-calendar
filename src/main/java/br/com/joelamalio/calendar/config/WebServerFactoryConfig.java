@@ -5,7 +5,7 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.stereotype.Component;
 
 @Component
-public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
+public class WebServerFactoryConfig implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
