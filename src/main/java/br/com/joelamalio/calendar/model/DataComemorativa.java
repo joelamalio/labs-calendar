@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +32,6 @@ public class DataComemorativa implements Serializable {
 	@NotBlank(message = "O campo Descrição é obrigatório")
 	private String descricao;
 	
-	@Enumerated(EnumType.STRING)
-	private StatusDataComemorativa status = StatusDataComemorativa.ATIVO;
+	private boolean status = true;
 	
 }
