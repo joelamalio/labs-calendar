@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.joelamalio.calendar.model.DataComemorativa;
-import br.com.joelamalio.calendar.model.StatusDataComemorativa;
 
 @Controller
 @RequestMapping("/datas")
@@ -20,7 +19,6 @@ public class DataComemorativaController {
 	@GetMapping("/nova")
 	public ModelAndView nova(DataComemorativa dataComemorativa) {
 		ModelAndView mv = new ModelAndView("data/manter");
-		mv.addObject("listaStatus", StatusDataComemorativa.values());
 		return mv;
 	}
 	
