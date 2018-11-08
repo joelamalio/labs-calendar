@@ -4,6 +4,10 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layout/layout-default}">
 
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors/bootstrap-switch.min.css}"/>	
+</head>
+
 <div layout:fragment="content">
 	<div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
@@ -17,33 +21,26 @@
 				
         		<input type="hidden" th:field="*{id}" />
         
-                <div class="form-row col-sm-3 mb-3">
- 	               <label for="data">Data</label>
-                   <input type="date" class="form-control" id="data" th:field="*{data}">
+                <div class="row">
+	                <div class="col col-sm-3 mb-3">
+	 	               <label for="data">Data</label>
+	                   <input type="text" class="form-control js-date" id="data" th:field="*{data}">
+	                </div>
+	                
+	                <div class="col col-sm-3 mb-3">
+	                    <label for="descricao">Status</label>
+	                    <div>
+							<input name="status" type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
+								data-on-text="Ativo" data-off-text="Inativo" th:field="*{status}" />
+	                    </div>
+	                </div>
                 </div>
                 
-                <div class="form-row col-sm-12 mb-3">
-                    <label for="descricao">Descrição</label>
-                    <textarea class="form-control" id="descricao" rows="6" th:field="*{descricao}"></textarea>
-                </div>
-                
-                <div class="form-group col-sm-3 mb-0">
-                    <label for="descricao">Status</label>
-                    <div class="form-row">
-	                    <div class="form-check form-check-inline">
-	                        <input class="form-check-input" type="radio" id="statusAtivo" checked>
-	                        <label class="form-check-label" for="statusAtivo">
-	                            Ativo
-	                        </label>
-	                    </div>
-	                    
-	                    <div class="form-check form-check-inline">
-	                        <input class="form-check-input" type="radio" id="statusInativo">
-	                        <label class="form-check-label" for="statusInativo">
-	                            Inativo
-	                        </label>
-	                    </div>
-                    </div>
+                <div class="row">
+	                <div class="col-sm-12 mb-3">
+	                    <label for="descricao">Descrição</label>
+	                    <textarea class="form-control" id="descricao" rows="6" th:field="*{descricao}"></textarea>
+	                </div>
                 </div>
 	        </div>
 	        
@@ -55,5 +52,14 @@
     </div>
 	
 </div>
+
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/js/vendors/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/vendors/bootstrap-switch.min.js}"></script>
+	<script th:src="@{/js/japroject.js}"></script>
+ 	<script>
+		$(".js-status").bootstrapSwitch();
+	</script>
+</th:block>
 
 </html>
