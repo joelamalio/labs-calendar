@@ -6,6 +6,7 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors/bootstrap-switch.min.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors/bootstrap-datepicker.standalone.min.css}"/>	
 </head>
 
 <div layout:fragment="content">
@@ -24,13 +25,13 @@
                 <div class="row">
 	                <div class="col col-sm-3 mb-3">
 	 	               <label for="data">Data</label>
-	                   <input type="text" class="form-control js-date" id="data" th:field="*{data}">
+	                   <input type="text" class="form-control js-date" id="data" th:field="*{data}" autocomplete="off">
 	                </div>
 	                
 	                <div class="col col-sm-3 mb-3">
-	                    <label for="descricao">Status</label>
+	                    <label for="status">Status</label>
 	                    <div>
-							<input name="status" type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
+							<input id="status" name="status" type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
 								data-on-text="Ativo" data-off-text="Inativo" th:field="*{status}" />
 	                    </div>
 	                </div>
@@ -55,10 +56,12 @@
 
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/js/vendors/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/vendors/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
 	<script th:src="@{/js/vendors/bootstrap-switch.min.js}"></script>
 	<script th:src="@{/js/japroject.js}"></script>
  	<script>
-		$(".js-status").bootstrapSwitch();
+        $(".js-status").bootstrapSwitch();
 	</script>
 </th:block>
 

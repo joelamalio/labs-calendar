@@ -32,6 +32,6 @@ public class DataComemorativa implements Serializable {
 	@NotBlank(message = "O campo Descrição é obrigatório")
 	private String descricao;
 	
-	private boolean status = true;
+	private Boolean status = Boolean.TRUE;
 	
 }
