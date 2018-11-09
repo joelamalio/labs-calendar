@@ -45,4 +45,11 @@ public class DataComemorativaController {
 		return new ModelAndView("redirect:/datas/nova");
 	}
 	
+	@GetMapping
+	public ModelAndView pesquisar() {
+		ModelAndView mv = new ModelAndView("data/listar");
+		mv.addObject("listaDataComemorativa", dataComemorativaService.filtrar());
+		return mv;
+	}
+	
 }
