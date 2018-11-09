@@ -1,0 +1,10 @@
+CREATE TABLE usuario (
+    id BIGINT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    login VARCHAR(50) NOT NULL,
+    senha VARCHAR(120) NOT NULL,
+    status INTEGER DEFAULT 3
+);
+
+CREATE SEQUENCE usuario_seq START 101;
