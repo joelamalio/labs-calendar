@@ -9,7 +9,7 @@ public class WebServerFactoryConfig implements WebServerFactoryCustomizer<Config
 
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
-		factory.setContextPath("/calendar");
+		factory.setContextPath("/calendario");
 
 	}
 }
