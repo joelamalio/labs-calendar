@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.joelamalio.calendar.domain.DataComemorativa;
 import br.com.joelamalio.calendar.exception.RegistroDuplicadoException;
-import br.com.joelamalio.calendar.model.DataComemorativa;
 import br.com.joelamalio.calendar.repository.DatasComemorativas;
 
 @Service

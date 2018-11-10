@@ -1,4 +1,4 @@
-package br.com.joelamalio.calendar.model;
+package br.com.joelamalio.calendar.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;

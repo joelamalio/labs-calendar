@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.joelamalio.calendar.domain.DataComemorativa;
 import br.com.joelamalio.calendar.exception.RegistroDuplicadoException;
-import br.com.joelamalio.calendar.model.DataComemorativa;
 import br.com.joelamalio.calendar.service.DataComemorativaService;
 
 @Controller

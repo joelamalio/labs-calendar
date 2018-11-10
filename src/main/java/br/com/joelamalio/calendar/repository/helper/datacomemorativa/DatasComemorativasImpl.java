@@ -10,7 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.joelamalio.calendar.model.DataComemorativa;
+import br.com.joelamalio.calendar.domain.DataComemorativa;
 
 public class DatasComemorativasImpl implements DatasComemorativasQueries {
 
