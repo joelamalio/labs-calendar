@@ -20,9 +20,9 @@ public class PeriodoService {
 
 	@Transactional
 	public Periodo salvar(Periodo periodo) {
-		Optional<Periodo> optional = periodoRepository.obterPor(periodo.getDataInicial());
+		Optional<Periodo> optional = periodoRepository.validarDuplicidade(periodo);
 		if (optional.isPresent()) {
-			throw new RegistroDuplicadoException("A Data já foi cadastrada");
+			throw new RegistroDuplicadoException("O período já foi cadastrado anteriormente");
 		}
 
 		return periodoRepository.saveAndFlush(periodo);

@@ -1,6 +1,5 @@
 package br.com.joelamalio.calendar.repository.helper.periodo;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -18,16 +17,19 @@ public class PeriodoRepositoryImpl implements PeriodoRepositoryQueries {
 	private EntityManager em;
 
 	@Override
-	public Optional<Periodo> obterPor(LocalDate dataInicial) {
+	public Optional<Periodo> validarDuplicidade(Periodo periodo) {
 		Criteria criteria = em.unwrap(Session.class).createCriteria(Periodo.class);
-		adicionarFiltro(dataInicial, criteria);
+		adicionarFiltro(periodo, criteria);
 
 		return Optional.ofNullable((Periodo) criteria.uniqueResult());
 	}
 
-	private void adicionarFiltro(LocalDate dataInicial, Criteria criteria) {
-		if (dataInicial != null) {
-			criteria.add(Restrictions.eq("dataInicial", dataInicial));
+	private void adicionarFiltro(Periodo periodo, Criteria criteria) {
+		if (periodo.getDataInicial() != null && periodo.getDataFinal() != null) {
+			criteria.add(Restrictions.eq("dataInicial", periodo.getDataInicial()));
+			criteria.add(Restrictions.eq("dataFinal", periodo.getDataFinal()));
+		} else {
+			criteria.add(Restrictions.isNull("dataInicial"));
 		}
 	}
 

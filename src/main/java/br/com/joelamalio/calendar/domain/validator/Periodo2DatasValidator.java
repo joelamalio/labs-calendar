@@ -15,10 +15,14 @@ public class Periodo2DatasValidator implements ConstraintValidator<ValidPeriodo2
 		LocalDate date1 = periodo.getDataInicial();
 		LocalDate date2 = periodo.getDataFinal();
 		
-		if (date1 != null && date2 != null 
-				&& (date1.isEqual(date2) || date1.isBefore(date2))) {
-			return true;
+		if (date1 != null) {
+			if (date2 != null && (date1.isEqual(date2) || date1.isBefore(date2))) {
+				return true;
+			} else if (date2 == null) {
+				return true;
+			}
 		}
+		
 		return false;
 	}
 
