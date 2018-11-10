@@ -7,14 +7,14 @@
 <div layout:fragment="content">
 	<div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
-            Pesquisa de data
+            Pesquisa de período
         </div>
     </div>
     
     <div class="card-body">
 				
-		<th:block th:each="item : ${listaDataComemorativa}">
-			[[${item.data}]]
+		<th:block th:each="item : ${periodos}">
+			[[${item.dataInicial}]]
 		</th:block>
 	        
    	</div>

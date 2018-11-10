@@ -12,9 +12,9 @@
 <div layout:fragment="content">
 	<div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
-            Cadastro de data
+            Cadastro de período
         </div>
-        <form method="POST" th:object="${dataComemorativa}" th:action="@{/datas/nova}">
+        <form method="POST" th:object="${periodo}" th:action="@{/periodo/novo}">
 	        	
         	<div th:replace="layout/fragment/mensagens :: messages"></div>
 				
@@ -24,8 +24,13 @@
         
                 <div class="row">
 	                <div class="col col-sm-3 mb-3">
-	 	               <label for="data">Data</label>
-	                   <input type="text" class="form-control js-date" id="data" th:field="*{data}" autocomplete="off">
+	 	               <label for="dataInicial">Data Inicial</label>
+	                   <input type="text" class="form-control js-date" id="dataInicial" th:field="*{dataInicial}" autocomplete="off">
+	                </div>
+	                
+	                <div class="col col-sm-3 mb-3">
+	 	               <label for="dataFinal">Data Final</label>
+	                   <input type="text" class="form-control js-date" id="dataFinal" th:field="*{dataFinal}" autocomplete="off">
 	                </div>
 	                
 	                <div class="col col-sm-3 mb-3">

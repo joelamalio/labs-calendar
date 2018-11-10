@@ -7,4 +7,4 @@ CREATE TABLE usuario (
     status INTEGER DEFAULT 3
 );
 
-CREATE SEQUENCE usuario_seq START 101;
+CREATE SEQUENCE usuario_seq START 1;

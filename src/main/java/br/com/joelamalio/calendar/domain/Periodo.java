@@ -16,20 +16,22 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "data_comemorativa")
+@Table(name = "periodo")
 @Data
 @EqualsAndHashCode(of = { "id" })
-public class DataComemorativa implements Serializable {
+public class Periodo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "data_comemorativa_seq", sequenceName = "data_comemorativa_seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "data_comemorativa_seq")
+	@SequenceGenerator(name = "periodo_seq", sequenceName = "periodo_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "periodo_seq")
 	private Long id;
 
-	@NotNull(message = "O campo Data é obrigatório")
-	private LocalDate data;
+	@NotNull(message = "O campo Data Inicial é obrigatório")
+	private LocalDate dataInicial;
+	
+	private LocalDate dataFinal;
 
 	@NotBlank(message = "O campo Descrição é obrigatório")
 	private String descricao;

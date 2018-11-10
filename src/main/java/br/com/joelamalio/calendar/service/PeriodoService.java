@@ -8,29 +8,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.joelamalio.calendar.domain.DataComemorativa;
+import br.com.joelamalio.calendar.domain.Periodo;
 import br.com.joelamalio.calendar.exception.RegistroDuplicadoException;
-import br.com.joelamalio.calendar.repository.DatasComemorativas;
+import br.com.joelamalio.calendar.repository.PeriodoRepository;
 
 @Service
-public class DataComemorativaService {
+public class PeriodoService {
 
 	@Autowired
-	private DatasComemorativas datasComemorativas;
+	private PeriodoRepository periodoRepository;
 
 	@Transactional
-	public DataComemorativa salvar(DataComemorativa dataComemorativa) {
-		Optional<DataComemorativa> optional = datasComemorativas.obterPor(dataComemorativa.getData());
+	public Periodo salvar(Periodo periodo) {
+		Optional<Periodo> optional = periodoRepository.obterPor(periodo.getDataInicial());
 		if (optional.isPresent()) {
 			throw new RegistroDuplicadoException("A Data já foi cadastrada");
 		}
 
-		return datasComemorativas.saveAndFlush(dataComemorativa);
+		return periodoRepository.saveAndFlush(periodo);
 	}
 
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<DataComemorativa> filtrar() {
-		return datasComemorativas.findAll();
+	public List<Periodo> filtrar() {
+		return periodoRepository.findAll();
 	}
 
 }
