@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.joelamalio.calendar.domain.validator.annotation.ValidPeriodo2Datas;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,6 +20,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "periodo")
 @Data
 @EqualsAndHashCode(of = { "id" })
+@ValidPeriodo2Datas
 public class Periodo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
