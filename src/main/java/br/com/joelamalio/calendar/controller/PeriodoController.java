@@ -47,9 +47,9 @@ public class PeriodoController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(PeriodoFilter filter, BindingResult result) {
+	public ModelAndView pesquisar(PeriodoFilter periodoFilter, BindingResult result) {
 		ModelAndView mv = new ModelAndView("periodo/listar-periodo");
-		mv.addObject("periodos", periodoService.filtrar(filter));
+		mv.addObject("periodos", periodoService.filtrar(periodoFilter));
 		return mv;
 	}
 	

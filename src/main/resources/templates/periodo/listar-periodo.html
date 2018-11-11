@@ -7,18 +7,18 @@
 <div layout:fragment="content">
     <h5 class="mb-4">Pesquisa de período</h5>
 	<div class="card mb-4">
-    	<form method="GET" th:object="${filter}">
+    	<form method="GET" th:object="${periodoFilter}">
 	        	
 	        <div class="card-body">
                 <div class="row">
 	                <div class="col col-sm-3 mb-3">
 	 	               <label for="dataInicial">Data Inicial</label>
-	 	               <input type="text" class="form-control js-date" id="dataInicial" autocomplete="off">
+	 	               <input id="dataInicial" type="text" class="form-control js-date" th:field="*{dataInicial}" autocomplete="off" >
 	                </div>
 	                
 	                <div class="col col-sm-3 mb-3">
 	 	               <label for="dataFinal">Data Final</label>
-	 	               <input type="text" class="form-control js-date" id="dataFinal" autocomplete="off">
+	 	               <input id="dataFinal" type="text" class="form-control js-date" th:field="*{dataFinal}" autocomplete="off" >
 	                </div>
                 </div>
 	        </div>
