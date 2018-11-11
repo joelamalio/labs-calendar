@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.joelamalio.calendar.domain.Periodo;
 import br.com.joelamalio.calendar.exception.RegistroDuplicadoException;
 import br.com.joelamalio.calendar.repository.PeriodoRepository;
+import br.com.joelamalio.calendar.repository.filter.PeriodoFilter;
 
 @Service
 public class PeriodoService {
@@ -29,8 +30,8 @@ public class PeriodoService {
 	}
 
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<Periodo> filtrar() {
-		return periodoRepository.findAll();
+	public List<Periodo> filtrar(PeriodoFilter filter) {
+		return periodoRepository.filtrar(filter);
 	}
 
 }

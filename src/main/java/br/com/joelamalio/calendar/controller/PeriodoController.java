@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.joelamalio.calendar.domain.Periodo;
 import br.com.joelamalio.calendar.exception.RegistroDuplicadoException;
+import br.com.joelamalio.calendar.repository.filter.PeriodoFilter;
 import br.com.joelamalio.calendar.service.PeriodoService;
 
 @Controller
@@ -46,9 +47,9 @@ public class PeriodoController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar() {
+	public ModelAndView pesquisar(PeriodoFilter filter, BindingResult result) {
 		ModelAndView mv = new ModelAndView("periodo/listar-periodo");
-		mv.addObject("periodos", periodoService.filtrar());
+		mv.addObject("periodos", periodoService.filtrar(filter));
 		return mv;
 	}
 	
