@@ -1,106 +1,108 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layout/layout-default}">
 
-<div layout:fragment="content">
-    <h5 class="mb-4">Pesquisa de período</h5>
-	<div class="card mb-4">
-    	<form method="GET" th:object="${periodoFilter}">
-	        	
-	        <div class="card-body">
-                <div class="row">
-	                <div class="col col-sm-3 mb-3">
-	 	               <label for="dataInicial">Data Inicial</label>
-	 	               <input id="dataInicial" type="text" class="form-control js-date" th:field="*{dataInicial}" autocomplete="off" >
-	                </div>
-	                
-	                <div class="col col-sm-3 mb-3">
-	 	               <label for="dataFinal">Data Final</label>
-	 	               <input id="dataFinal" type="text" class="form-control js-date" th:field="*{dataFinal}" autocomplete="off" >
-	                </div>
-                </div>
-	        </div>
-	        
-	        <div class="card-footer bg-white">
-	            <button class="btn btn-primary" type="submit">Pesquisar</button>
-	        </div>
-        </form>
-   	</div>
-   	
-   	<div class="card mb-4">
-  		<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-           	<div class="row">
-           		<div class="col-sm-12">
-           			<table id="example" class="table table-hover dataTable no-footer dtr-inline" cellspacing="0" width="100%" 
-           				role="grid" aria-describedby="example_info" style="width: 100%;">
-               			<thead class="thead-light">
-               				<tr role="row">
-               					<th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 191.5px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">
-               						Data Inicial
-               					</th>
-               					<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 293.5px;" aria-label="Position: activate to sort column ascending">
-               						Data Final
-               					</th>
-               					<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 139.5px;" aria-label="Office: activate to sort column ascending">
-               						Descrição
-               					</th>
-               					<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 111.5px;" aria-label="Salary: activate to sort column ascending">
-               						Status
-               					</th>
-               					<th class="actions sorting_disabled" rowspan="1" colspan="1" style="width: 138px;" aria-label="Actions">
-               						Ações
-               					</th>
-              				</tr>
-               			</thead>
-               			<tbody th:each="item : ${periodos}">
-               				<tr role="row" th:class="${itemStat.odd} ? 'odd' : 'even'">
-			                   	<td tabindex="0" class="sorting_1">[[${item.dataInicial}]]</td>
-			                  	<td>[[${item.dataFinal}]]</td>
-			                   	<td>[[${item.descricao}]]</td>
-			                   	<td>[[${item.status}]]</td>
-			                   	<td class=" actions">
-                       				<a href="#" class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-fw fa-edit"></i></a>
-                       				<a href="#" class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-fw fa-trash"></i></a>
-                   				</td>
-               				</tr>
-               			</tbody>
-           			</table>
-           			<div id="example_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
-        		</div>
-       		</div>
-       		<div class="row">
-       			<div class="col-sm-12 col-md-5">
-       				<div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-       					Showing 1 to 5 of 5 entries (filtered from 57 total entries)
-       				</div>
-     			</div>
-       			<div class="col-sm-12 col-md-7">
-       				<div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-       					<ul class="pagination">
-       						<li class="paginate_button page-item previous disabled" id="example_previous">
-       							<a href="#" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">&lt&lt</a>
-      						</li>
-      						<li class="paginate_button page-item active">
-      							<a href="#" aria-controls="example" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-      						</li>
-      						<li class="paginate_button page-item next disabled" id="example_next">
-      							<a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">&gt&gt</a>
-     						</li>
-     					</ul>
-     				</div>
-     			</div>
-     		</div>
-     	</div>
-   	</div>
+<head>
+	<link th:href="@{/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min.css}" rel="stylesheet">
+</head>
+
+<h3 layout:fragment="page-title-left">Período</h3>
+
+<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search" layout:fragment="page-title-right">
+	<div class="input-group">
+		<div></div>
+		<span class="input-group-btn">
+			<a class= "btn btn-default" th:href="@{/periodo/novo}">
+				<i class="glyphicon glyphicon-plus-sign"></i> 
+				<span class="hidden-xs hidden-sm">Cadastrar</span>
+			</a>
+		</span>
+	</div>
+</div>
+
+<div class="row" layout:fragment="content">
+	
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_content">
+				<form method="GET" th:object="${periodoFilter}" class="form-horizontal">
+			
+					<div class="col-md-3 col-sm-3 col-xs-6 form-group">
+			      		<label for="dataInicial">Data Inicial</label>
+			      		<input type="text" class="form-control ja-date" id="dataInicial" th:field="*{dataInicial}" autocomplete="off">
+					</div>
+					
+					<div class="col-md-3 col-sm-3 col-xs-6 form-group">
+		      			<label for="dataFinal">Data Final</label>
+			      		<input type="text" class="form-control ja-date" id="dataFinal" th:field="*{dataFinal}" autocomplete="off">
+					</div>
+					
+			  		<div class="form-group">
+						<div class="col-xs-12">
+							<button class="btn btn-primary" type="submit">Pesquisar</button>
+							<a class="btn btn-info" th:href="@{/periodo}">Limpar</a>
+						</div>
+					</div>
+			  		
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2></h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					<li class="dropdown"></li>
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="col-sm-2">Data Inicial</th>
+							<th class="col-sm-2">Data Final</th>
+							<th class="col-sm-2">Status</th>
+							<th class="col-sm-4">Descrição</th>
+							<th class="col-sm-2"></th>
+						</tr>
+					</thead>
+					<tbody th:each="item : ${periodos}">
+						<tr>
+							<th scope="row">[[${item.dataInicial}]]</th>
+							<td>[[${item.dataFinal}]]</td>
+							<td>[[${item.status}]]</td>
+							<td>[[${item.descricao}]]</td>
+							<td><a href="#" class="btn btn-icon btn-pill btn-primary"
+								data-toggle="tooltip" title="" data-original-title="Edit"><i
+									class="fa fa-fw fa-edit"></i></a> <a href="#"
+								class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
+								title="" data-original-title="Delete"><i
+									class="fa fa-fw fa-trash"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <th:block layout:fragment="javascript-extra">
-	<script th:src="@{/js/vendors/jquery.mask.min.js}"></script>
-	<script th:src="@{/js/vendors/bootstrap-datepicker.min.js}"></script>
-	<script th:src="@{/js/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
-	<script th:src="@{/js/japroject.js}"></script>
+	<script th:src="@{/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
+	<script th:src="@{/project/js/ja-date.js}"></script>
 </th:block>
 
 </html>

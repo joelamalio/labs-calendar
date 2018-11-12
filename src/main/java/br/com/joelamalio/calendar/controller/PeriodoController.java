@@ -1,5 +1,6 @@
 package br.com.joelamalio.calendar.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class PeriodoController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(PeriodoFilter periodoFilter, BindingResult result) {
+	public ModelAndView pesquisar(PeriodoFilter periodoFilter, BindingResult result, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("periodo/listar-periodo");
 		mv.addObject("periodos", periodoService.filtrar(periodoFilter));
 		return mv;

@@ -1,0 +1,3 @@
+$(function() {
+	$(".ja-status").bootstrapSwitch();
+});

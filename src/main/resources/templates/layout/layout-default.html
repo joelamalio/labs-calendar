@@ -1,46 +1,84 @@
-<!doctype html>
-<html lang="pt">
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Joel Amálio">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-all.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootadmin.min.css}">
+	<title>JA Calendar</title>
 
-    <title>JA Calendar</title>
+	<!-- Bootstrap -->
+	<link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+	<!-- Font Awesome -->
+	<link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+	<!-- NProgress -->
+	<link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet" type="text/css">
+	<!-- Custom Theme Style -->
+  	<link th:href="@{/gentelella/css/custom.min.css}" rel="stylesheet" type="text/css">
 </head>
-<body class="bg-light">
 
-<nav class="navbar navbar-expand navbar-dark bg-primary">
-    <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
-    <a class="navbar-brand" href="#">JA Calendar</a>
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+        		<div class="left_col scroll-view">
+					<div class="navbar nav_title" style="border: 0;">
+						<a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>JA Calendar!</span></a>
+					</div>
 
-    <div th:replace="layout/fragment/barra-navegacao :: navbar"></div>
-</nav>
+					<div class="clearfix"></div>
 
-<div class="d-flex">
-    <div th:replace="layout/fragment/menu-lateral :: sidebar"></div>
+					<div th:replace="layout/fragment/profile :: profile"></div>
 
-    <div class="content p-4" layout:fragment="content">
-        <h2 class="mb-4">Blank/Starter</h2>
+					<br />
 
-        <div class="card mb-4">
-            <div class="card-body">
-                This is a blank page you can use as a starting point.
-            </div>
-        </div>
-    </div>
-</div>
+					<div th:replace="layout/fragment/menu-lateral :: sidebar-menu"></div>
+  				</div>
+			</div>
 
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/bootadmin.min.js}"></script>
+			<div th:replace="layout/fragment/barra-navegacao :: top_nav"></div>
 
-<th:block layout:fragment="javascript-extra"></th:block>
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3 layout:fragment="page-title-left"></h3>
+						</div>
 
+						<div class="title_right">
+							<div layout:fragment="page-title-right"></div>
+						</div>
+					</div>
+
+    				<div class="clearfix"></div>
+
+					<div layout:fragment="content"></div>
+					
+				</div>
+			</div>
+			<!-- /page content -->
+
+			<footer th:replace="layout/fragment/rodape :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+	<!-- Bootstrap -->
+	<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- FastClick -->
+	<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+	<!-- NProgress -->
+	<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+	<!-- Custom Theme Scripts -->
+	<script th:src="@{/gentelella/js/custom.min.js}"></script>
+	
+	<th:block layout:fragment="javascript-extra"></th:block>
+	
 </body>
 </html>

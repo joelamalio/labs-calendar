@@ -49,11 +49,11 @@ public class PeriodoRepositoryImpl implements PeriodoRepositoryQueries {
 	
 	private void adicionarFiltro(PeriodoFilter filter, Criteria criteria) {
 		if (filter.getDataInicial() != null) {
-			criteria.add(Restrictions.eq("dataInicial", filter.getDataInicial()));
+			criteria.add(Restrictions.ge("dataInicial", filter.getDataInicial()));
 		}
 		
 		if (filter.getDataFinal() != null) {
-			criteria.add(Restrictions.eq("dataFinal", filter.getDataFinal()));
+			criteria.add(Restrictions.le("dataFinal", filter.getDataFinal()));
 		}
 	}
 

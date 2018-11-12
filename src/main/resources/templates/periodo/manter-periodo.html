@@ -5,69 +5,84 @@
 	layout:decorate="~{layout/layout-default}">
 
 <head>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors/bootstrap-switch.min.css}"/>	
-	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors/bootstrap-datepicker.standalone.min.css}"/>	
+	<link th:href="@{/vendors/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min.css}" rel="stylesheet" type="text/css">
 </head>
 
-<div layout:fragment="content">
-	<div class="card mb-4">
-        <div class="card-header bg-white font-weight-bold">
-            Cadastro de período
-        </div>
-        <form method="POST" th:object="${periodo}" th:action="@{/periodo/novo}">
-	        	
-        	<div th:replace="layout/fragment/mensagens :: messages"></div>
+<h3 layout:fragment="page-title-left">Período</h3>
+
+<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search" layout:fragment="page-title-right">
+	<div class="input-group">
+		<div></div>
+		<span class="input-group-btn">
+			<a class= "btn btn-default" th:href="@{/periodo}">
+				<i class="glyphicon glyphicon-search"></i> 
+				<span class="hidden-xs hidden-sm">Pequisar</span>
+			</a>
+		</span>
+	</div>
+</div>
+
+<div class="row" layout:fragment="content">
+	
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_content">
+				<form method="POST" th:object="${periodo}" class="form-horizontal">
 				
-	        <div class="card-body">
-				
-        		<input type="hidden" th:field="*{id}" />
-        
-                <div class="row">
-	                <div class="col col-sm-3 mb-3">
-	 	               <label for="dataInicial">Data Inicial</label>
-	                   <input type="text" class="form-control js-date" id="dataInicial" th:field="*{dataInicial}" autocomplete="off">
-	                </div>
-	                
-	                <div class="col col-sm-3 mb-3">
-	 	               <label for="dataFinal">Data Final</label>
-	                   <input type="text" class="form-control js-date" id="dataFinal" th:field="*{dataFinal}" autocomplete="off">
-	                </div>
-	                
-	                <div class="col col-sm-3 mb-3">
+					<div th:replace="layout/fragment/mensagens :: messages"></div>
+			
+					<input type="hidden" th:field="*{id}" />
+					
+					<div class="col-md-3 col-sm-3 col-xs-6 form-group">
+			      		<label for="dataInicial">Data Inicial</label>
+			      		<input type="text" class="form-control ja-date" id="dataInicial" th:field="*{dataInicial}" autocomplete="off">
+					</div>
+					
+					<div class="col-md-3 col-sm-3 col-xs-6 form-group">
+		      			<label for="dataFinal">Data Final</label>
+			      		<input type="text" class="form-control ja-date" id="dataFinal" th:field="*{dataFinal}" autocomplete="off">
+					</div>
+					
+					 <div class="col-md-3 col-sm-3 col-xs-6 form-group">
 	                    <label for="status">Status</label>
 	                    <div>
-							<input id="status" name="status" type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
-								data-on-text="Ativo" data-off-text="Inativo" th:field="*{status}" />
+							<input id="status" type="checkbox" class="ja-status" data-size="small" data-off-color="danger" 
+								data-on-text="Ativo" data-off-text="Inativo" th:field="*{status}" checked />
 	                    </div>
 	                </div>
-                </div>
-                
-                <div class="row">
-	                <div class="col-sm-12 mb-3">
-	                    <label for="descricao">Descrição</label>
-	                    <textarea class="form-control" id="descricao" rows="6" th:field="*{descricao}"></textarea>
+					
+					<div class="form-group">
+		                <div class="col-xs-12 mb-3">
+		                    <label for="descricao">Descrição</label>
+		                    <textarea class="form-control" id="descricao" rows="6" th:field="*{descricao}"></textarea>
+		                </div>
 	                </div>
-                </div>
-	        </div>
-	        
-	        <div class="card-footer bg-white">
-	            <button class="btn btn-primary" type="submit">Salvar</button>
-	            <button class="btn btn-danger" type="button">Cancelar</button>
-	        </div>
-        </form>
-    </div>
-	
+					
+			  		<div class="form-group">
+						<div class="col-xs-12">
+							<button class="btn btn-primary" type="submit">Salvar</button>
+							<a class="btn btn-danger" th:href="@{/periodo}">Cancelar</a>
+						</div>
+					</div>
+			  		
+				</form>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <th:block layout:fragment="javascript-extra">
-	<script th:src="@{/js/vendors/jquery.mask.min.js}"></script>
-	<script th:src="@{/js/vendors/bootstrap-datepicker.min.js}"></script>
-	<script th:src="@{/js/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
-	<script th:src="@{/js/vendors/bootstrap-switch.min.js}"></script>
-	<script th:src="@{/js/japroject.js}"></script>
- 	<script>
-        $(".js-status").bootstrapSwitch();
-	</script>
+	<script th:src="@{/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
+	<script th:src="@{/project/js/ja-date.js}"></script>
+
+	<script th:src="@{/vendors/bootstrap-switch/dist/js/bootstrap-switch.min.js}"></script>
+	<script th:src="@{/project/js/ja-status.js}"></script>
 </th:block>
+
+
 
 </html>

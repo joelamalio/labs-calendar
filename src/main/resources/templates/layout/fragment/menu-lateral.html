@@ -3,30 +3,29 @@
 	xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<div class="sidebar sidebar-dark bg-dark" th:fragment="sidebar">
-    <ul class="list-unstyled">
-        <li><a href="#"><i class="fas fa-home fa-fw"></i> Dashboard</a></li>
-        <li><a th:href="@{/periodo/novo}"><i class="fas fa-book fa-fw"></i> Período</a></li>
-        <li><a th:href="@{/periodo}"><i class="fas fa-book fa-fw"></i> Período :: Pesquisar</a></li>
-        <li>
-            <a href="#sm_expand_config" data-toggle="collapse">
-                <i class="fas fa-cog fa-fw"></i> Configurações
-            </a>
-            <ul id="sm_expand_config" class="list-unstyled collapse">
-		        <li><a th:href="@{/status}">Status dos usuários</a></li>
-		        <li><a href="#">Usuários</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#sm_expand_bootadmin" data-toggle="collapse">
-                <i class="fa fa-fw fa-link"></i> BootAdmin
-            </a>
-            <ul id="sm_expand_bootadmin" class="list-unstyled collapse">
-		        <li><a href="https://bootadmin.net/demo/docs" target="_blank">Documentação</a></li>
-		        <li><a href="https://bootadmin.net/demo/icons" target="_blank">Template</a></li>
-            </ul>
-        </li>
-    </ul>
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" th:fragment="sidebar-menu">
+	<div class="menu_section">
+		<h3>Menu</h3>
+		<ul class="nav side-menu">
+			<li>
+				<a href="#"><i class="fa fa-home"></i> Dashboard </span></a>
+			</li>
+			<li>
+				<a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
+				<ul class="nav child_menu">
+					<li>
+						<a th:href="@{/periodo}">Período</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a><i class="fa fa-clone"></i>Template <span class="fa fa-chevron-down"></span></a>
+				<ul class="nav child_menu">
+					<li><a href="https://colorlib.com/polygon/gentelella/index.html">Gentelella Alella</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 </div>
 
 </body>
