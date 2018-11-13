@@ -39,5 +39,9 @@ public class Periodo implements Serializable {
 	private String descricao;
 
 	private Boolean status = Boolean.TRUE;
+	
+	public boolean isNovo() {
+		return id == null;
+	}
 
 }

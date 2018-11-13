@@ -29,6 +29,8 @@
 		<div class="x_panel">
 			<div class="x_content">
 				<form method="GET" th:object="${periodoFilter}" class="form-horizontal">
+				
+					<div th:replace="layout/fragment/mensagens :: messages"></div>
 			
 					<div class="col-md-3 col-sm-3 col-xs-6 form-group">
 			      		<label for="dataInicial">Data Inicial</label>
@@ -82,12 +84,18 @@
 							<td>[[${item.dataFinal}]]</td>
 							<td>[[${item.status}]]</td>
 							<td>[[${item.descricao}]]</td>
-							<td><a href="#" class="btn btn-icon btn-pill btn-primary"
-								data-toggle="tooltip" title="" data-original-title="Edit"><i
-									class="fa fa-fw fa-edit"></i></a> <a href="#"
-								class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
-								title="" data-original-title="Delete"><i
-									class="fa fa-fw fa-trash"></i></a></td>
+							<td>
+								<a th:href="@{/periodo/{id}(id=${item.id})}"
+									class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" 
+									title="Editar" data-original-title="Edit">
+									<i class="fa fa-fw fa-edit"></i>
+								</a> 
+								<a th:href="@{/periodo/teste-excluir/{id}(id=${item.id})}" 
+									class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
+									title="Excluir" data-original-title="Delete">
+									<i class="fa fa-fw fa-trash"></i>
+								</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

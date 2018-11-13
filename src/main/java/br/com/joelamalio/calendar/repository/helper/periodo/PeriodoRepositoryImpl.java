@@ -39,6 +39,10 @@ public class PeriodoRepositoryImpl implements PeriodoRepositoryQueries {
 	}
 
 	private void adicionarFiltro(Periodo periodo, Criteria criteria) {
+		if (!periodo.isNovo()) {
+			criteria.add(Restrictions.ne("id", periodo.getId()));
+		}
+		
 		if (periodo.getDataInicial() != null && periodo.getDataFinal() != null) {
 			criteria.add(Restrictions.eq("dataInicial", periodo.getDataInicial()));
 			criteria.add(Restrictions.eq("dataFinal", periodo.getDataFinal()));
