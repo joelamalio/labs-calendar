@@ -68,6 +68,12 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
         	<artifactId>thymeleaf-layout-dialect</artifactId>
        	</dependency>
+       	
+       	<!-- Thymeleaf extras data attribute -->
+       	<dependency>
+	        <groupId>com.github.mxab.thymeleaf.extras</groupId>
+	        <artifactId>thymeleaf-extras-data-attribute</artifactId>
+	    </dependency>
 		
 	</dependencies>
 

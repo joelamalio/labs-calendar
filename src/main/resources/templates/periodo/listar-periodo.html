@@ -3,7 +3,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layout/layout-default}">
+	layout:decorate="~{layout/layout-default}"
+	xmlns:jacalendar="http://calendar.joelamalio.com.br">
 
 <head>
 	<link th:href="@{/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min.css}" rel="stylesheet">
@@ -78,7 +79,7 @@
 							<th class="col-sm-2"></th>
 						</tr>
 					</thead>
-					<tbody th:each="item : ${periodos}">
+					<tbody th:each="item : ${pagina.conteudo}">
 						<tr>
 							<th scope="row">[[${item.dataInicial}]]</th>
 							<td>[[${item.dataFinal}]]</td>
@@ -97,10 +98,15 @@
 								</a>
 							</td>
 						</tr>
+						<tr th:if="${pagina.vazia}">
+							<td colspan="47">Nenhum registro encontrado</td>
+						</tr>
 					</tbody>
 				</table>
-
 			</div>
+			
+			<jacalendar:pagination page="${pagina}" />
+			
 		</div>
 	</div>
 

@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.joelamalio.calendar.controller.page.PageWrapper;
 import br.com.joelamalio.calendar.domain.Periodo;
 import br.com.joelamalio.calendar.exception.RegistroDuplicadoException;
 import br.com.joelamalio.calendar.repository.PeriodoRepository;
@@ -64,9 +67,11 @@ public class PeriodoController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(PeriodoFilter periodoFilter, BindingResult result, HttpServletRequest httpServletRequest) {
+	public ModelAndView pesquisar(PeriodoFilter periodoFilter, @PageableDefault(size = 2) Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("periodo/listar-periodo");
-		mv.addObject("periodos", periodoService.filtrar(periodoFilter));
+		PageWrapper<Periodo> paginaWrapper = new PageWrapper<Periodo>(periodoRepository.filtrar(periodoFilter, pageable), httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
+		
 		return mv;
 	}
 	
