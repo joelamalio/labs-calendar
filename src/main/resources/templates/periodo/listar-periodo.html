@@ -81,9 +81,16 @@
 					</thead>
 					<tbody th:each="item : ${pagina.conteudo}">
 						<tr>
-							<th scope="row">[[${item.dataInicial}]]</th>
-							<td>[[${item.dataFinal}]]</td>
-							<td>[[${item.status}]]</td>
+							<td scope="row" th:text="${#temporals.format(item.dataInicial, 'dd/MM/yyyy')}"></td>
+							<td scope="row" th:text="${#temporals.format(item.dataFinal, 'dd/MM/yyyy')}"></td>
+							<td>
+								<th:block th:if="${item.status}">
+									<span class="label label-success">Ativo</span>
+								</th:block>
+								<th:block th:if="${not item.status}">
+									<span class="label label-danger">Inativo</span>
+								</th:block>
+							</td>
 							<td>[[${item.descricao}]]</td>
 							<td>
 								<a th:href="@{/periodo/{id}(id=${item.id})}"
