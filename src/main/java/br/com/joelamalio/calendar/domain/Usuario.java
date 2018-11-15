@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
@@ -18,6 +19,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.springframework.util.StringUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -59,6 +62,9 @@ public class Usuario implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_perfil"))
 	private List<Perfil> perfis ;
+	
+	@Transient
+	private String nomeApresentacao;
 
 	@PrePersist
 	private void prePersistUpdate() {
@@ -71,6 +77,16 @@ public class Usuario implements Serializable {
 		this.confirmacaoSenha = this.senha;
 		login = login.toLowerCase();
 		email = email.toLowerCase();
+	}
+	
+	@PostLoad
+	private void PostLoad() {
+		if (!StringUtils.isEmpty(this.nome)) {
+			this.nomeApresentacao = this.nome.split(" ")[0];
+			if (this.nomeApresentacao.length() > 14) {
+				this.nomeApresentacao = this.nomeApresentacao.substring(0, 14);
+			}
+		}
 	}
 	
 	public boolean isNovo() {
