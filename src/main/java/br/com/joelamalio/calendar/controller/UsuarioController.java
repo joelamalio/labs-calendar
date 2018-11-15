@@ -51,7 +51,7 @@ public class UsuarioController {
 		try {
 			usuarioService.salvar(usuario);
 		} catch(RegistroDuplicadoException e) {
-			result.rejectValue("dataInicial", e.getMessage(), e.getMessage());
+			result.rejectValue("login", e.getMessage(), e.getMessage());
 			return novo(usuario);
 		}
 		
