@@ -5,7 +5,7 @@
 <th:block th:fragment="pagination (pagina)">
 	<div class="row" th:if="${not pagina.vazia}">
 		<div class="col-sm-5">
-			<div class="dataTables_info" id="datatable_info" role="status" aria-live="polite" th:text="|Foram encontrados ${pagina.quantidadeRegistros} registros|"></div>
+			<div class="dataTables_info" id="datatable_info" role="status" aria-live="polite" th:text="|${pagina.quantidadeRegistros} registro(s) encontrado(s)|"></div>
 		</div>
 		<div class="col-sm-7">
 			<div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">

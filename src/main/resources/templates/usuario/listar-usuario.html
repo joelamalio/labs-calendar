@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout/layout-default}"
+	xmlns:jacalendar="http://calendar.joelamalio.com.br">
+
+<h3 layout:fragment="page-title-left">Usuário</h3>
+
+<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search" layout:fragment="page-title-right">
+	<div class="input-group">
+		<div></div>
+		<span class="input-group-btn">
+			<a class= "btn btn-default" th:href="@{/usuario/novo}">
+				<i class="glyphicon glyphicon-plus-sign"></i> 
+				<span class="hidden-xs hidden-sm">Cadastrar</span>
+			</a>
+		</span>
+	</div>
+</div>
+
+<div class="row" layout:fragment="content">
+	
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_content">
+				<form method="GET" th:object="${usuarioFilter}" class="form-horizontal">
+				
+					<div th:replace="layout/fragment/mensagens :: messages"></div>
+			
+					<div class="col-md-3 col-sm-3 col-xs-6 form-group">
+			      		<label for="dataInicial">Nome</label>
+			      		<input type="text" class="form-control" id="nome" th:field="*{nome}">
+					</div>
+					
+			  		<div class="form-group">
+						<div class="col-xs-12">
+							<button class="btn btn-primary" type="submit">Pesquisar</button>
+							<a class="btn btn-info" th:href="@{/usuario}">Limpar</a>
+						</div>
+					</div>
+			  		
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2></h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					<li class="dropdown"></li>
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="col-sm-2">Login</th>
+							<th class="col-sm-3">Nome</th>
+							<th class="col-sm-3">Email</th>
+							<th class="col-sm-2">Status</th>
+							<th class="col-sm-2"></th>
+						</tr>
+					</thead>
+					<tbody th:each="item : ${pagina.conteudo}">
+						<tr>
+							<td scope="row" th:text="${item.login}"></td>
+							<td scope="row" th:text="${item.nome}"></td>
+							<td scope="row" th:text="${item.email}"></td>
+							<td>
+								<th:block th:if="${item.status}">
+									<span class="label label-success">Ativo</span>
+								</th:block>
+								<th:block th:if="${not item.status}">
+									<span class="label label-danger">Inativo</span>
+								</th:block>
+							</td>
+							<td>
+								<a href="@{/usuario/{id}(id=${item.id})}"
+									class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" 
+									title="Editar" data-original-title="Edit">
+									<i class="fa fa-fw fa-edit"></i>
+								</a> 
+								<a href="#" 
+									class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
+									title="Excluir" data-original-title="Delete">
+									<i class="fa fa-fw fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+						<tr th:if="${pagina.vazia}">
+							<td colspan="47">Nenhum registro encontrado</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<jacalendar:pagination page="${pagina}" />
+			
+		</div>
+	</div>
+
+</div>
+
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
+	<script th:src="@{/project/js/ja-date.js}"></script>
+</th:block>
+
+</html>
