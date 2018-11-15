@@ -32,16 +32,16 @@
 		<div class="login_wrapper">
 			<div class="animate form login_form">
 				<section class="login_content">
-					<form>
+					<form th:action="@{/login}" method="POST">
 						<h1>Acesso Restrito</h1>
 						<div>
-							<input type="text" class="form-control" placeholder="Login" required="" />
+							<input type="text" class="form-control" placeholder="Login" required="" name="username" />
 						</div>
 						<div>
-							<input type="password" class="form-control" placeholder="Senha" required="" />
+							<input type="password" class="form-control" placeholder="Senha" required="" name="password" />
 						</div>
 						<div>
-							<a class="btn btn-primary submit" href="index.html">Entrar</a>
+							<button type="submit" class="btn btn-primary">Entrar</button>
 							<a class="reset_pass" href="#">Esqueceu sua senha?</a>
 						</div>
 
