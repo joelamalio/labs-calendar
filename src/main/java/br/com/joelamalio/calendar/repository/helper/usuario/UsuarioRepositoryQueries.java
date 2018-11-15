@@ -12,6 +12,8 @@ public interface UsuarioRepositoryQueries {
 
 	public Optional<Usuario> logar(String login);
 	
+	public Optional<Usuario> validarDuplicidade(Usuario usuario);
+	
 	public Page<Usuario> filtrar(UsuarioFilter filter, Pageable pageable);
 	
 }

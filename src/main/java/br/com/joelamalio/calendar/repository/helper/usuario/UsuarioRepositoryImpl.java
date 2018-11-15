@@ -35,6 +35,17 @@ public class UsuarioRepositoryImpl implements UsuarioRepositoryQueries {
 				  .setParameter("login", login).getResultList().stream().findFirst();
 	}
 	
+	@Override
+	public Optional<Usuario> validarDuplicidade(Usuario usuario) {
+		Criteria criteria = em.unwrap(Session.class).createCriteria(Usuario.class);
+
+		if (!StringUtils.isEmpty(usuario.getLogin())) {
+			criteria.add(Restrictions.eq("login", usuario.getLogin()));
+		}
+
+		return Optional.ofNullable((Usuario) criteria.uniqueResult());
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
@@ -56,11 +67,9 @@ public class UsuarioRepositoryImpl implements UsuarioRepositoryQueries {
 	}
 
 	private void adicionarFiltro(UsuarioFilter filter, Criteria criteria) {
-		if (filter != null) {
-			if (!StringUtils.isEmpty(filter.getNome())) {
-				criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
-			}
- 		}
+		if (!StringUtils.isEmpty(filter.getNome())) {
+			criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
+		}
 	}
 
 }

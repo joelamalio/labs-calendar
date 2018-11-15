@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -33,27 +35,46 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq")
 	private Long id;
 
+	@Size(max = 50, message = "O tamanho máximo permitido do campo Nome é {max}")
 	@NotBlank(message = "O campo Nome é obrigatório")
 	private String nome;
 	
-	@Email(message = "E-mail inválido")
-	@NotBlank(message = "E-mail é obrigatório")
+	@Size(max = 100, message = "O tamanho máximo permitido do campo Email é {max}")
+	@Email(message = "Email inválido")
+	@NotBlank(message = "Email é obrigatório")
 	private String email;
 	
-	@NotBlank(message = "O campo Senha é obrigatório")
 	private String senha;
 	
 	@Transient
 	private String confirmacaoSenha;
 	
+	@Size(max = 20, message = "O tamanho máximo permitido do campo Login é {max}")
 	@NotBlank(message = "O campo Login é obrigatório")
 	private String login;
 	
 	private Boolean status;
 	
-	@Size(min = 1, message = "Selecione pelo menos um perfil")
+	@Size(min = 0, message = "Selecione pelo menos um perfil")
 	@ManyToMany
 	@JoinTable(name = "usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_perfil"))
-	private List<Perfil> perfis;
+	private List<Perfil> perfis ;
+
+	@PrePersist
+	private void prePersistUpdate() {
+		login = login.toLowerCase();
+		email = email.toLowerCase();
+	}
+	
+	@PreUpdate
+	private void preUpdate() {
+		this.confirmacaoSenha = this.senha;
+		login = login.toLowerCase();
+		email = email.toLowerCase();
+	}
+	
+	public boolean isNovo() {
+		return id == null;
+	}
 	
 }
