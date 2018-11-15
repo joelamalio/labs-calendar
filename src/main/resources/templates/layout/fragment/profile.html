@@ -9,7 +9,7 @@
 	</div>
 	<div class="profile_info">
 		<span>Bem-vindo,</span>
-		<h2>Administrador</h2>
+		<h2 th:text="${#authentication.principal.usuario.nome}">Administrador</h2>
 	</div>
 	<div class="clearfix"></div>
 </div>

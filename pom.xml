@@ -83,6 +83,12 @@
 	        <groupId>com.github.mxab.thymeleaf.extras</groupId>
 	        <artifactId>thymeleaf-extras-data-attribute</artifactId>
 	    </dependency>
+	    
+	    <!-- Thymeleaf - Extras Spring Security -->
+	    <dependency>
+	        <groupId>org.thymeleaf.extras</groupId>
+	        <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+	    </dependency>
 		
 	</dependencies>
 
