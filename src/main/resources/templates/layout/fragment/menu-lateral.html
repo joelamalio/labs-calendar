@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" th:fragment="sidebar-menu">
 	<div class="menu_section">
 		<h3>Menu</h3>
 		<ul class="nav side-menu">
-			<li>
+			<li sec:authorize="hasRole('ROLE_MENU_DASHBOARD')">
 				<a th:href="@{/}"><i class="fa fa-home"></i> Dashboard </span></a>
 			</li>
-			<li>
+			<li sec:authorize="hasRole('ROLE_MENU_CADASTROS')">
 				<a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
-					<li>
+					<li sec:authorize="hasRole('ROLE_MENU_PERIODO')">
 						<a th:href="@{/periodo}">Período</a>
 					</li>
 				</ul>
 			</li>
-			<li>
+			<li sec:authorize="hasRole('ROLE_MENU_CONFIGURACOES')">
 				<a><i class="fa fa-cogs"></i> Configurações <span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
-					<li>
+					<li sec:authorize="hasRole('ROLE_MENU_USUARIO')">
 						<a th:href="@{/usuario}">Usuário</a>
 					</li>
 				</ul>

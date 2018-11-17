@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+			.antMatchers("/").hasRole("LISTAR_DASHBOARD")
 			.antMatchers("/periodo/**").hasRole("MANTER_PERIODO")
+			.antMatchers("/usuario/**").hasRole("MANTER_USUARIO")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
