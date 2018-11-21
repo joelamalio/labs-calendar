@@ -69,18 +69,24 @@
 			</div>
 			<div class="x_content">
 
-				<table class="table table-hover">
+				<table id="datatable" class="table table-hover">
 					<thead>
 						<tr>
-							<th class="col-sm-2">Data Inicial</th>
-							<th class="col-sm-2">Data Final</th>
-							<th class="col-sm-2">Status</th>
+							<th class="col-sm-2">
+								<jacalendar:order page="${pagina}" field="dataInicial" text="Data Inicial" /> 
+							</th>
+							<th class="col-sm-2">
+								<jacalendar:order page="${pagina}" field="dataFinal" text="Data Final" /> 
+							</th>
+							<th class="col-sm-2">
+								<jacalendar:order page="${pagina}" field="status" text="Status" /> 
+							</th>
 							<th class="col-sm-4">Descrição</th>
 							<th class="col-sm-2"></th>
 						</tr>
 					</thead>
-					<tbody th:each="item : ${pagina.conteudo}">
-						<tr>
+					<tbody>
+						<tr th:each="item : ${pagina.conteudo}">
 							<td scope="row" th:text="${#temporals.format(item.dataInicial, 'dd/MM/yyyy')}"></td>
 							<td scope="row" th:text="${#temporals.format(item.dataFinal, 'dd/MM/yyyy')}"></td>
 							<td>
@@ -121,8 +127,10 @@
 
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.min.js}"></script>
+	
 	<script th:src="@{/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 	<script th:src="@{/vendors/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
+	
 	<script th:src="@{/project/js/ja-date.js}"></script>
 </th:block>
 

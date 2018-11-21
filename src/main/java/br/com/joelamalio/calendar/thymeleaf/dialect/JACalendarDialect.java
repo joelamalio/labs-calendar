@@ -7,6 +7,7 @@ import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
+import br.com.joelamalio.calendar.thymeleaf.processor.OrderElementTagProcessor;
 import br.com.joelamalio.calendar.thymeleaf.processor.PaginationElementTagProcessor;
 
 public class JACalendarDialect extends AbstractProcessorDialect {
@@ -19,6 +20,7 @@ public class JACalendarDialect extends AbstractProcessorDialect {
 	public Set<IProcessor> getProcessors(String dialectPrefix) {
 		final Set<IProcessor> processadores = new HashSet<IProcessor>();
 		processadores.add(new PaginationElementTagProcessor(dialectPrefix));
+		processadores.add(new OrderElementTagProcessor(dialectPrefix));
 		return processadores;
 	}
 
