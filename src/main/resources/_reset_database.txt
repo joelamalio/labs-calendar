@@ -1,0 +1,9 @@
+delete from flyway_schema_history;
+drop table perfil_autorizacao;
+drop table autorizacao;
+drop table usuario_perfil;
+drop table perfil;
+drop table usuario;
+drop table periodo;
+drop sequence usuario_seq;
+drop sequence periodo_seq;
